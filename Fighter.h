@@ -81,4 +81,27 @@ public:
 		return losses;
 	}
 
+	//Setters 
+	void setStrength(int str) {
+		strength = str;
+	}
+	void setEndurance(int end) {
+		endurance = end;
+	}
+	void setSpeed(int spe) {
+		speed = spe;
+	}
+	void setSubOff(int off) {
+		subOffence = off;
+	}
+	void setSubDef(int def) {
+		subDefence = def;
+	}
+	void setWins(int w) {
+		wins = w;
+	}
+	void setLosses(int l) {
+		losses = l;
+	}
+
 };
