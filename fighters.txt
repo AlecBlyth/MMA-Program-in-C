@@ -1,0 +1,2 @@
+1000|John Doe|United Kingdom|Edinburgh|Kickboxing|20|60|168|95|80|75|70|87|0|0
+1001|Adam Doe|United Kingdom|Glasgow|Kickboxing|20|60|168|85|70|65|60|77|0|0
