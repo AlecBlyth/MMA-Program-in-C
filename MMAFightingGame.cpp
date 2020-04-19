@@ -23,9 +23,6 @@ bool gameMaths(float probabilityOfSuccess) { //Calcuates a random chance for fig
 	return rand() % 100 < (probabilityOfSuccess * 100);
 } 
 
-void fighterTrainer(vector<Fighter>Vector) {
-	
-}
 
 //Main Functions
 
