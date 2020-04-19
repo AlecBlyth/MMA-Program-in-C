@@ -194,8 +194,69 @@ void gameMenu(vector<Fighter>fighterVector) {
 	case 4: menu(fighterVector);
 	}
 }
-void trainerMenu(vector<Fighter>fighterVector){
-	cout << "test";
+void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to increase stats of fighters. 
+	
+	cout << "\n \n1 : Strength\n2 : Speed\n3 : Endurance\n4 : Submission Offence\n5 : Submission Defence \n6: Back" << endl;
+
+	cin >> input;
+
+	switch (input) {
+	case 1: { //Increase strength
+		if (fighterVector[s].getStrength() != 100) {
+			int t_strength = fighterVector[s].getStrength();
+			fighterVector[s].setStrength(t_strength + 1);
+			trainerMenu(fighterVector);
+		}
+		else {
+			cout << "\n Fighter has reached max strength! \n";
+			trainerMenu(fighterVector);
+		}
+	}
+	case 2: //Increase speed
+		if (fighterVector[s].getSpeed() != 100) {
+			int t_speed = fighterVector[s].getSpeed();
+			fighterVector[s].setSpeed(t_speed + 1);
+			trainerMenu(fighterVector);
+		}
+		else {
+			cout << "\n Fighter has reached max speed! \n";
+			trainerMenu(fighterVector);
+		}
+	case 3: //Increase endurance
+		if (fighterVector[s].getEndurance() != 100) {
+			int t_endurance = fighterVector[s].getEndurance();
+			fighterVector[s].setEndurance(t_endurance + 1);
+			trainerMenu(fighterVector);
+		}
+		else {
+			cout << "\n Fighter has reached max endurance! \n";
+			trainerMenu(fighterVector);
+		}
+	case 4: //Increase submission offence
+		if (fighterVector[s].getSubOff() != 100) {
+			int t_subOff = fighterVector[s].getSubOff();
+			fighterVector[s].setSubOff(t_subOff + 1);
+			trainerMenu(fighterVector);
+		}
+		else {
+			cout << "\n Fighter has reached max submission offence! \n";
+			trainerMenu(fighterVector);
+		}
+		trainerMenu(fighterVector);
+	case 5: //Increase submission defence 
+		if (fighterVector[s].getSubDef() != 100) {
+			int t_subOff = fighterVector[s].getSubDef();
+			fighterVector[s].setSubDef(t_subOff + 1);
+			trainerMenu(fighterVector);
+		}
+		else {
+			cout << "\n Fighter has reached max submission defence! \n";
+			trainerMenu(fighterVector);
+		}
+		trainerMenu(fighterVector);
+	case 6: 
+		gameMenu(fighterVector); //Back option 
+	}
 }
 
 
