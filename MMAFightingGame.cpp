@@ -174,8 +174,9 @@ void gameMenu(vector<Fighter>fighterVector) {
 			if (selection == fighterVector[s].getID()) {
 				cout << "You have selected: " << fighterVector[s].getName() << "\n \n";
 				gameMenu(fighterVector);
+			else {
+				s++;
 			}
-			s++;
 		}
 	}
 	case 2: cout << "\nTrain a Fighter\n";
