@@ -28,6 +28,142 @@ bool gameMaths(float probabilityOfSuccess) { //Calcuates a random chance for fig
 
 void fightFunction(vector<Fighter>fighterVector) {
 
+	//Player Attributes
+
+	int wins_1 = fighterVector[s].getWins();
+	int wins_2 = fighterVector[x].getWins();
+
+	int losses_1 = fighterVector[s].getLoss();
+	int losses_2 = fighterVector[x].getLoss();
+
+	int str_1 = fighterVector[s].getStrength();
+	int str_2 = fighterVector[x].getStrength();
+
+	int end_1 = fighterVector[s].getEndurance();
+	int end_2 = fighterVector[x].getEndurance();
+
+	int sub_O1 = fighterVector[s].getSubOff();
+	int sub_O2 = fighterVector[x].getSubOff();
+
+	int sub_Def1 = fighterVector[s].getSubDef();
+	int sub_Def2 = fighterVector[x].getSubDef();
+
+	int hp_1 = 100 + end_1;
+	int hp_2 = 100 + end_2;
+
+	int ap_1 = 100 + str_1 / 10;
+	int ap_2 = 100 + str_2 / 10;
+
+	double speed_1 = fighterVector[s].getSpeed() / 100 / 5; 
+	double speed_2 = fighterVector[x].getSpeed() / 100 / 5;
+
+	//Fight Variables 
+
+	bool fightOver = false; ///Boolean to check if fight is over 
+	int fightCount = 5; //Emulates fight rounds 
+
+	//Main Algorithm
+
+	while (hp_1 > 0 && hp_2 > 0 && fightCount != 0 && fightOver == false) { //While the fighters still have hp and fight is not over 
+
+		switch (gameMaths(0.10)) { //0.10 chance of submission take down 
+		case true: //if true 
+			if (sub_O1 > sub_Def2) { //if the selected player's offence is more than defence then 
+				switch (gameMaths(0.25)) { //0.25% chance of take down
+				case true:
+					cout << fighterVector[s].getName() << " takes down " << fighterVector[x].getName() << endl;
+					hp_2 = hp_2 - (sub_O1); //second fighter's health is deducted by first fighter's submission offence
+				}
+			}
+			else {
+				switch (gameMaths(0.10)) { //If the defence is higher then take down attempt is 0.01% chance of successful takedown 
+				case true:
+					cout << fighterVector[s].getName() << " takes down " << fighterVector[x].getName() << endl;
+					hp_2 = hp_2 - (sub_O1);
+				}
+			}
+			if (hp_2 <= 0) { //If the takedown is successful and fighter health is less than or equal to 0 then 
+				cout << fighterVector[x].getName() << " taps out!" << endl; //prompt user
+				fighterVector[x].setLosses(losses_2 + 1); //set losses plus one
+				fighterVector[s].setWins(wins_1 + 1); // set win plus one
+				fightOver = true; //set fight over to true
+				gameMenu(fighterVector); //return to menu 
+			}
+		case false: // same as above but reversed for second fighter
+			if (sub_O2 > sub_Def1) {
+				switch (gameMaths(0.25)) {
+				case true:
+					cout << fighterVector[x].getName() << " takes down " << fighterVector[s].getName() << endl;
+					hp_1 = hp_1 - (sub_O2);
+				}
+			}
+			else {
+				switch (gameMaths(0.10)) {
+				case true:
+					cout << fighterVector[x].getName() << " takes down " << fighterVector[s].getName() << endl;
+					hp_1 = hp_1 - (sub_O2);
+				}
+				if (hp_1 <= 0) {
+					cout << fighterVector[s].getName() << " taps out!" << endl;
+					fighterVector[s].setLosses(losses_1 + 1);
+					fighterVector[x].setWins(wins_2 + 1);
+					fightOver = true;
+					gameMenu(fighterVector);
+				}
+			}
+		}
+
+		while (gameMaths(0.25 + speed_1) == true && fightOver == false) { //While the fight is not over if true, fighter hits opponent
+			cout << fighterVector[s].getName() << " hits " << fighterVector[x].getName() << endl;
+			hp_2 = hp_2 - ap_1; //deduct health from attacker's action points 
+		} if (gameMaths(0.25 + speed_1) == false) { // if false and second fighter's chance is true then do the reverse 
+			while (gameMaths(0.25 + speed_2) == true) {
+				cout << fighterVector[x].getName() << " hits " << fighterVector[s].getName() << endl;
+				hp_1 = hp_1 - ap_2;
+			}
+		}
+		else if (gameMaths(0.25 + speed_2) == false && fightOver == false) { //If second fighter's chance is false then both have missed
+			cout << "Both fighters missed!" << endl;
+		}
+
+		if (hp_1 <= 0 && fightOver != true) { //If fighter's health is 0 then second fighter wins by KO/TKO 
+			cout << fighterVector[x].getName() << " KO/TKOs " << fighterVector[s].getName() << endl;
+			fighterVector[s].setLosses(losses_1 + 1);
+			fighterVector[x].setWins(wins_2 + 1);
+			fightOver = true;
+			gameMenu(fighterVector);
+		}
+		else if (hp_2 <= 0 && fightOver != true) {
+			cout << fighterVector[s].getName() << " KO/TKOs " << fighterVector[x].getName() << endl;
+			fighterVector[x].setLosses(losses_2 + 1);
+			fighterVector[s].setWins(wins_1 + 1);
+			fightOver = true;
+			gameMenu(fighterVector);
+		}
+		fightCount--; //After each function call, decrement counter
+
+		if (fightCount == 0 && fightOver != true) { //Decision calculator 
+			if (hp_2 - end_2 < hp_1 - end_1) { //If second fighter's hp is lower then first wins by decision. 
+				cout << fighterVector[s].getName() << " wins by decision!" << endl;
+				fighterVector[x].setLosses(losses_2 + 1);
+				fighterVector[s].setWins(wins_1 + 1);
+				fightOver = true;
+				gameMenu(fighterVector);
+			}
+			else if (hp_1 - end_1 < hp_2 - end_2) {
+				cout << fighterVector[x].getName() << " wins by decision!" << endl;
+				fighterVector[s].setLosses(losses_1 + 1);
+				fighterVector[x].setWins(wins_2 + 1);
+				fightOver = true;
+				gameMenu(fighterVector);
+			}
+			else if (hp_1 - end_1 == hp_2 - end_2) { //If both fighters hp is equal then no contest 
+				cout << "No contest!" << endl;
+				fightOver = true;
+				gameMenu(fighterVector);
+			}
+		}
+	}
 }
 
 //Main Functions
