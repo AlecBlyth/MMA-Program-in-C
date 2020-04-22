@@ -12,10 +12,13 @@ int input; //Input string for menu
 int selection; //Selection int for fighter selection 
 int s; //Fighter selection int for fighter selected
 
+//Declaration of functions
+void fightMenu(vector<Fighter>fighterVector);
 void trainerMenu(vector <Fighter> fighterVector);
-void gameMenu(vector <Fighter> fighterVector); //Declaration of functions
+void gameMenu(vector <Fighter> fighterVector); 
 void menu(vector <Fighter> fighterVector);
 void fightFunction(vector<Fighter> fighterVector);
+
 
 //Algorithmic functions  
 
@@ -198,7 +201,7 @@ void gameMenu(vector<Fighter>fighterVector) {
 			gameMenu(fighterVector);
 		}
 		else {
-			fightFunction(fighterVector);
+			fightMenu(fighterVector);
 		}
 	case 4: menu(fighterVector);
 	}
@@ -279,6 +282,35 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 		trainerMenu(fighterVector);
 	case 7: 
 		gameMenu(fighterVector); //Back option 
+	}
+}
+	void fightMenu(vector<Fighter> fighterVector) {
+	
+	int i = 0;
+	int x = 0;
+
+	for (const Fighter& Fighter : fighterVector) { //For each fighter object in vector display object attributes 
+		cout << i << "\n: " << fighterVector[i].getName() << "\n" << "| Strength: "
+			<< fighterVector[i].getStrength()
+			<< " | Speed: " << fighterVector[i].getSpeed()
+			<< " | Endurance: " << fighterVector[i].getEndurance()
+			<< " | Submission Offence: " << fighterVector[i].getSubOff()
+			<< " | Submission Defence: " << fighterVector[i].getSubDef()
+			<< " | Fighter ID: " << fighterVector[i].getID() << "\n \n";
+		i++;
+	}
+	cin >> o;
+	for (const Fighter& Fighter : fighterVector) {
+		if (o == fighterVector[s].getID()) {
+			cout << "\n You cannot select the same fighter!" << endl;
+			fightMenu(fighterVector);
+		} else if (o == fighterVector[x].getID()) {
+			cout << "You have selected: " << fighterVector[x].getName() << "\n \n";
+			fightFunction(fighterVector);
+		}
+		else {
+			x++;
+		}
 	}
 }
 
