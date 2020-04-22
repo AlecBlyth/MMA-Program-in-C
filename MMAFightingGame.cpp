@@ -11,6 +11,7 @@ using namespace std;
 int input; //Input string for menu
 int selection; //Selection int for fighter selection 
 int s; //Fighter selection int for fighter selected
+int x; //Opponent selection int
 
 //Declaration of functions
 void fightMenu(vector<Fighter>fighterVector);
@@ -423,7 +424,8 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 	void fightMenu(vector<Fighter> fighterVector) {
 	
 	int i = 0;
-	int x = 0;
+	int o = 0;
+	x = 0;
 
 	for (const Fighter& Fighter : fighterVector) { //For each fighter object in vector display object attributes 
 		cout << i << "\n: " << fighterVector[i].getName() << "\n" << "| Strength: "
