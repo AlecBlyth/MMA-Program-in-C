@@ -65,7 +65,7 @@ void menu(vector <Fighter> fighterVector) {
 	string c_fightingOut; //fighting out of for creator
 	string c_style; //fight style for creator 
 
-	cout << "|==========================================================|\n|                   BunnyCorp MMA Game                     |\n|==========================================================|\n|     1. Add Fighters                                      |\n|     2. View Fighters                                     |\n|     3. Play Game                                         |\n|     0. Exit Game                                         |\n|==========================================================|" << endl; //Menu Screen : Change from Java (Reduced number of lines) 
+	cout << "\n|==========================================================|\n|                   BunnyCorp MMA Game                     |\n|==========================================================|\n|     1. Add Fighters                                      |\n|     2. View Fighters                                     |\n|     3. Play Game                                         |\n|     0. Exit Game                                         |\n|==========================================================|" << endl; //Menu Screen : Change from Java (Reduced number of lines) 
 
 	cin >> input;
 
