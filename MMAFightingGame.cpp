@@ -151,7 +151,7 @@ void menu(vector <Fighter> fighterVector) {
 }
 void gameMenu(vector<Fighter>fighterVector) {
 
-	cout << "|==========================================================|\n|                   BunnyCorp MMA Game                     |\n|==========================================================|\n|     1. Pick Fighter                                      |\n|     2. Train Fighters                                    |\n|     3. Fight                                             |\n|     4. Main Menu                                         |\n|==========================================================|" << endl; //Game Menu Screen : Change from Java (Reduced number of lines) 
+	cout << "\n|==========================================================|\n|                   BunnyCorp MMA Game                     |\n|==========================================================|\n|     1. Pick Fighter                                      |\n|     2. Train Fighters                                    |\n|     3. Fight                                             |\n|     4. Main Menu                                         |\n|==========================================================|" << endl; //Game Menu Screen : Change from Java (Reduced number of lines) 
 	cin >> input;
 
 	switch (input) {
@@ -197,7 +197,7 @@ void gameMenu(vector<Fighter>fighterVector) {
 }
 void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to increase stats of fighters. 
 	
-	cout << "\n \n1 : Strength\n2 : Speed\n3 : Endurance\n4 : Submission Offence\n5 : Submission Defence \n6: Back" << endl;
+	cout << "\n \n1 : Strength\n2 : Speed\n3 : Endurance\n4 : Submission Offence\n5 : Submission Defence \n6 : View Stats \n7 : Back \n" << endl;
 
 	cin >> input;
 
@@ -205,7 +205,9 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 	case 1: { //Increase strength
 		if (fighterVector[s].getStrength() != 100) {
 			int t_strength = fighterVector[s].getStrength();
+			cout << "Strength increased from: " << t_strength << " to ";
 			fighterVector[s].setStrength(t_strength + 1);
+			cout << fighterVector[s].getStrength();
 			trainerMenu(fighterVector);
 		}
 		else {
@@ -216,7 +218,9 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 	case 2: //Increase speed
 		if (fighterVector[s].getSpeed() != 100) {
 			int t_speed = fighterVector[s].getSpeed();
+			cout << "Speed increased from: " << t_speed << " to ";
 			fighterVector[s].setSpeed(t_speed + 1);
+			cout << fighterVector[s].getSpeed();
 			trainerMenu(fighterVector);
 		}
 		else {
@@ -226,7 +230,9 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 	case 3: //Increase endurance
 		if (fighterVector[s].getEndurance() != 100) {
 			int t_endurance = fighterVector[s].getEndurance();
+			cout << "Endurance increased from: " << t_endurance << " to ";
 			fighterVector[s].setEndurance(t_endurance + 1);
+			cout << fighterVector[s].getEndurance();
 			trainerMenu(fighterVector);
 		}
 		else {
@@ -236,7 +242,9 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 	case 4: //Increase submission offence
 		if (fighterVector[s].getSubOff() != 100) {
 			int t_subOff = fighterVector[s].getSubOff();
+			cout << "Submission Offence increased from: " << t_subOff << " to ";
 			fighterVector[s].setSubOff(t_subOff + 1);
+			cout << fighterVector[s].getSubOff();
 			trainerMenu(fighterVector);
 		}
 		else {
@@ -246,8 +254,10 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 		trainerMenu(fighterVector);
 	case 5: //Increase submission defence 
 		if (fighterVector[s].getSubDef() != 100) {
-			int t_subOff = fighterVector[s].getSubDef();
-			fighterVector[s].setSubDef(t_subOff + 1);
+			int t_subDef = fighterVector[s].getSubDef();
+			cout << "Submission Defence increased from: " << t_subDef << " to ";
+			fighterVector[s].setSubDef(t_subDef + 1);
+			cout << fighterVector[s].getSubDef();
 			trainerMenu(fighterVector);
 		}
 		else {
@@ -255,7 +265,11 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 			trainerMenu(fighterVector);
 		}
 		trainerMenu(fighterVector);
-	case 6: 
+
+	case 6:
+		cout << "Current Fighter Skills: \n Strength: " << fighterVector[s].getStrength() << "\n Speed: " << fighterVector[s].getSpeed() << "\n Endurance: " << fighterVector[s].getEndurance() << "\n Submission Offence: " << fighterVector[s].getSubOff() << "\n Submission Defence: " << fighterVector[s].getSubDef() << endl;
+		trainerMenu(fighterVector);
+	case 7: 
 		gameMenu(fighterVector); //Back option 
 	}
 }
