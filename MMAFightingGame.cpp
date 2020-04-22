@@ -11,22 +11,19 @@ using namespace std;
 int input; //Input string for menu
 int selection; //Selection int for fighter selection 
 int s; //Fighter selection int for fighter selected
-int x; //Opponent selection int
+int x; //Opponent selection int 
 
 //Declaration of functions
 void fightMenu(vector<Fighter>fighterVector);
 void trainerMenu(vector <Fighter> fighterVector);
-void gameMenu(vector <Fighter> fighterVector); 
+void gameMenu(vector <Fighter> fighterVector);
 void menu(vector <Fighter> fighterVector);
 void fightFunction(vector<Fighter> fighterVector);
 
-
 //Algorithmic functions  
-
 bool gameMaths(float probabilityOfSuccess) { //Calcuates a random chance for fights based on input value. 
 	return rand() % 100 < (probabilityOfSuccess * 100);
-} 
-
+}
 void fightFunction(vector<Fighter>fighterVector) {
 
 	//Player Attributes
@@ -176,7 +173,6 @@ void fightFunction(vector<Fighter>fighterVector) {
 }
 
 //Main Functions
-
 int main() //Initialise variables on start up 
 {
 	vector <Fighter> fighterVector; //Vector for fighter objects 
@@ -196,9 +192,8 @@ int main() //Initialise variables on start up
 }
 
 //Menu Functions 
-
 void menu(vector <Fighter> fighterVector) {
- 
+
 	int i = 0; //Variable for view fighters 
 	int lastID; //Variable for last ID
 
@@ -306,7 +301,9 @@ void gameMenu(vector<Fighter>fighterVector) {
 
 	switch (input) {
 	case 1: { cout << "\nPick a Fighter (Enter ID)\n-----------------------------\n";
+
 		s = 0; //Fixes exception when selecting a fighter out of vector range
+
 		int playerCount = 0; //Fixes issue from Java where x continues to increment. 
 
 		for (const Fighter& Fighter : fighterVector) { //For each fighter object in vector display object attributes 
@@ -324,35 +321,37 @@ void gameMenu(vector<Fighter>fighterVector) {
 			if (selection == fighterVector[s].getID()) {
 				cout << "You have selected: " << fighterVector[s].getName() << "\n \n";
 				gameMenu(fighterVector);
+			}
 			else {
 				s++;
 			}
 		}
 	}
 	case 2: cout << "\nTrain a Fighter\n";
+
 		if (selection == 0) {
 			cout << "Please select a fighter!" << endl;
 			gameMenu(fighterVector);
 		}
 		else {
-			cout << "Fighter: " << fighterVector[s].getName()  <<  "\n \n1 : Strength\n2 : Speed\n3 : Endurance\n4 : Submission Offence\n5 : Submission Defence" << endl;
+			cout << "\n Fighter: " << fighterVector[s].getName();
 			trainerMenu(fighterVector);
 		}
 
-
 	case 3: cout << "\nFight\n";
-		 if (selection == 0) {
+		if (selection == 0) {
 			cout << "Please select a fighter!" << endl;
 			gameMenu(fighterVector);
 		}
 		else {
 			fightMenu(fighterVector);
 		}
+
 	case 4: menu(fighterVector);
 	}
 }
-void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to increase stats of fighters. 
-	
+void trainerMenu(vector<Fighter>fighterVector) { //Function that allows user to increase stats of fighters. 
+
 	cout << "\n \n1 : Strength\n2 : Speed\n3 : Endurance\n4 : Submission Offence\n5 : Submission Defence \n6 : View Stats \n7 : Back \n" << endl;
 
 	cin >> input;
@@ -425,12 +424,12 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 	case 6:
 		cout << "Current Fighter Skills: \n Strength: " << fighterVector[s].getStrength() << "\n Speed: " << fighterVector[s].getSpeed() << "\n Endurance: " << fighterVector[s].getEndurance() << "\n Submission Offence: " << fighterVector[s].getSubOff() << "\n Submission Defence: " << fighterVector[s].getSubDef() << endl;
 		trainerMenu(fighterVector);
-	case 7: 
+	case 7:
 		gameMenu(fighterVector); //Back option 
 	}
 }
-	void fightMenu(vector<Fighter> fighterVector) {
-	
+void fightMenu(vector<Fighter> fighterVector) {
+
 	int i = 0;
 	int o = 0;
 	x = 0;
@@ -450,7 +449,8 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 		if (o == fighterVector[s].getID()) {
 			cout << "\n You cannot select the same fighter!" << endl;
 			fightMenu(fighterVector);
-		} else if (o == fighterVector[x].getID()) {
+		}
+		else if (o == fighterVector[x].getID()) {
 			cout << "You have selected: " << fighterVector[x].getName() << "\n \n";
 			fightFunction(fighterVector);
 		}
@@ -459,5 +459,3 @@ void trainerMenu(vector<Fighter>fighterVector){ //Function that allows user to i
 		}
 	}
 }
-
-
