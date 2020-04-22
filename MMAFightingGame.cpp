@@ -55,8 +55,14 @@ void fightFunction(vector<Fighter>fighterVector) {
 	int ap_1 = 100 + str_1 / 10;
 	int ap_2 = 100 + str_2 / 10;
 
-	double speed_1 = fighterVector[s].getSpeed() / 100 / 5; 
-	double speed_2 = fighterVector[x].getSpeed() / 100 / 5;
+	double speed_1 = fighterVector[s].getSpeed();
+	speed_1 = speed_1 / 100;
+	speed_1 = speed_1 / 5;
+
+
+	double speed_2 = fighterVector[x].getSpeed();
+	speed_2 = speed_2 / 100;
+	speed_2 = speed_2 / 5;
 
 	//Fight Variables 
 
@@ -117,14 +123,16 @@ void fightFunction(vector<Fighter>fighterVector) {
 		while (gameMaths(0.25 + speed_1) == true && fightOver == false) { //While the fight is not over if true, fighter hits opponent
 			cout << fighterVector[s].getName() << " hits " << fighterVector[x].getName() << endl;
 			hp_2 = hp_2 - ap_1; //deduct health from attacker's action points 
-		} if (gameMaths(0.25 + speed_1) == false) { // if false and second fighter's chance is true then do the reverse 
-			while (gameMaths(0.25 + speed_2) == true) {
-				cout << fighterVector[x].getName() << " hits " << fighterVector[s].getName() << endl;
-				hp_1 = hp_1 - ap_2;
+			if (gameMaths(0.25 + speed_1) == false) { // if false and second fighter's chance is true then do the reverse 
+				if (gameMaths(0.25 + speed_2) == true) {
+					cout << fighterVector[x].getName() << " hits " << fighterVector[s].getName() << endl;
+					hp_1 = hp_1 - ap_2;
+
+				}
 			}
-		}
-		else if (gameMaths(0.25 + speed_2) == false && fightOver == false) { //If second fighter's chance is false then both have missed
-			cout << "Both fighters missed!" << endl;
+			else if (gameMaths(0.25 + speed_2) == false && fightOver == false) { //If second fighter's chance is false then both have missed
+				cout << "Both fighters missed!" << endl;
+			}
 		}
 
 		if (hp_1 <= 0 && fightOver != true) { //If fighter's health is 0 then second fighter wins by KO/TKO 
