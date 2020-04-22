@@ -15,7 +15,7 @@ int s; //Fighter selection int for fighter selected
 void trainerMenu(vector <Fighter> fighterVector);
 void gameMenu(vector <Fighter> fighterVector); //Declaration of functions
 void menu(vector <Fighter> fighterVector);
-
+void fightFunction(vector<Fighter> fighterVector);
 
 //Algorithmic functions  
 
@@ -23,6 +23,9 @@ bool gameMaths(float probabilityOfSuccess) { //Calcuates a random chance for fig
 	return rand() % 100 < (probabilityOfSuccess * 100);
 } 
 
+void fightFunction(vector<Fighter>fighterVector) {
+
+}
 
 //Main Functions
 
@@ -43,7 +46,6 @@ int main() //Initialise variables on start up
 	menu(fighterVector);
 
 }
-
 
 //Menu Functions 
 
@@ -191,7 +193,13 @@ void gameMenu(vector<Fighter>fighterVector) {
 
 
 	case 3: cout << "\nFight\n";
-
+		 if (selection == 0) {
+			cout << "Please select a fighter!" << endl;
+			gameMenu(fighterVector);
+		}
+		else {
+			fightFunction(fighterVector);
+		}
 	case 4: menu(fighterVector);
 	}
 }
