@@ -158,7 +158,7 @@ void gameMenu(vector<Fighter>fighterVector) {
 
 	switch (input) {
 	case 1: { cout << "\nPick a Fighter (Enter ID)\n-----------------------------\n";
-		s = 0;
+		s = 0; //Fixes exception when selecting a fighter out of vector range
 		int playerCount = 0; //Fixes issue from Java where x continues to increment. 
 
 		for (const Fighter& Fighter : fighterVector) { //For each fighter object in vector display object attributes 
